@@ -168,7 +168,7 @@ stay **verbatim** and valid UTF-8 on disk. Bad encoding turns them into `???`,
 `â€"`, or `Â§`. Prefer root **`.editorconfig`** with `charset = utf-8` when
 present.
 
-1. Prefer Cursor **`StrReplace` / `Write`** — no bulk shell rewrites unless
+1. Prefer opencode **`edit` / `write`** — no bulk shell rewrites unless
    encoding is explicit.
 2. **Never** use PowerShell `Set-Content`, `Out-File`, or
    `Get-Content | Set-Content` on tracked `.md` / `.ts` / `.tsx` / `.rs`
@@ -191,7 +191,7 @@ Get-ChildItem -Recurse *.md | ForEach-Object {
 
 | Bulk edits                                                | Avoid                                                                       |
 | --------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `git mv` + targeted `StrReplace` or one UTF-8-safe script | PowerShell loops over `*.md` without UTF-8; `sed`/redirects assuming locale |
+| `git mv` + targeted `edit` or one UTF-8-safe script     | PowerShell loops over `*.md` without UTF-8; `sed`/redirects assuming locale |
 
 After editing files with non-ASCII literals, spot-check:
 `rg '\?\?\?' <edited-path>`. If `???` appears, restore from git and re-apply

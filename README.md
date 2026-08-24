@@ -76,6 +76,11 @@ CodeGraph exposes tools named `mcp__codegraph__*` (search, callers, callees,
 trace, impact, node, context, explore, files, status). See the `codegraph`
 skill for which tool fits which question.
 
+On Windows, set `--path` to an **absolute path with doubled backslashes**
+inside the JSON string (e.g. `"--path", "C:\\path\\to\\root"`). The default
+`"."` works on any OS, so this only matters if you point codegraph at a
+different root.
+
 ## Per-developer notes
 
 There is no separate `mcp.json` and no machine-specific gitignore: every
@@ -83,3 +88,10 @@ developer's settings live in `.opencode/opencode.json` and are committed. If
 you must keep a setting local, prefer environment variables in the
 `mcp[name].environment` block (opencode supports `{env:VAR}` interpolation in
 header values; shell-style `${VAR}` is **not** substituted).
+
+### Adding more MCP servers
+
+Add another key under `mcp` with the same shape (`type`, `command` as an
+array, optional `environment`). Remote servers use `type: "remote"` with
+`url` and optional `headers`. Refer to each server's docs for required
+arguments.
