@@ -196,3 +196,16 @@ Get-ChildItem -Recurse *.md | ForEach-Object {
 After editing files with non-ASCII literals, spot-check:
 `rg '\?\?\?' <edited-path>`. If `???` appears, restore from git and re-apply
 with a UTF-8-safe method.
+
+---
+
+## Agent commits
+
+- **Do not auto-commit** after code modification. Wait for an explicit
+  user request before running `git add`, `git commit`, or `git push` —
+  even if the changes look complete.
+- Applies to every working tree, including nested repos inside gitignored
+  folders (e.g. `.opencode/`).
+- When the user does ask to commit, stage the files they named (or run
+  `git status` first and confirm). Do not sweep untracked files into a
+  commit.
