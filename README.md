@@ -6,54 +6,61 @@ any file in `.opencode/`.
 ## Workflow
 
 This repo is meant to be reused across repositories via **sparse checkout**:
-each consumer pulls only the skills it needs.
+each consumer pulls only the skills it needs. Commands below use
+**PowerShell** (Windows). On bash/zsh, replace the trailing `` ` `` with `\`.
 
 ### Bootstrap in a consumer repo
 
-```bash
-# From the consumer repo root
-mkdir -p .opencode
+`git clone --sparse` creates the `.opencode/` folder itself — no `mkdir` /
+`cd` needed:
+
+```powershell
+# From the consumer repo root (SSH or HTTPS)
+git clone --sparse --filter=blob:none git@github.com:kyung-lee-official/.opencode.git
 cd .opencode
-git init
-git remote add origin git@github.com:kyung-lee-official/.opencode.git
 
-# Select only the relevant skills (cone mode = directory-level)
-git sparse-checkout init --cone
-git sparse-checkout set \
-    AGENTS.md \
-    opencode.json \
-    README.md \
-    methodology/<relevant-skill> \
-    methodology/<relevant-skill> \
-    stacks/<language> \
-    stacks/<framework>
-
-git pull origin main
+# Select the relevant skills (cone mode = directory-level)
+git sparse-checkout add `
+    methodology/<skill> `
+    stacks/<language>/<skill> `
+    stacks/<framework>/<skill>
 ```
 
-`--cone` keeps the selection directory-level, which matches the
-`stacks/<x>/<skill>/SKILL.md` layout. The consumer's `.gitignore` should
-ignore `.opencode/` so the nested repo stays isolated.
+Notes:
+
+- **`--filter=blob:none`** skips downloading file blobs for paths you don't
+  select; the rest are fetched on demand.
+- **Cone mode accepts directories only.** Each entry selects a skill
+  directory; the root files (`AGENTS.md`, `opencode.json`, `README.md`) are
+  always included automatically, so never list them here.
+- The consumer's `.gitignore` should ignore `.opencode/` so the nested repo
+  stays isolated.
 
 ### Add or remove a skill later
 
-```bash
+```powershell
 cd .opencode
-git sparse-checkout add stacks/<framework>
-git sparse-checkout set stacks/<language> ...
-git pull
+
+# Add another skill directory
+git sparse-checkout add stacks/<language>/<skill>
+
+# Drop one: list only what should remain
+git sparse-checkout set stacks/<language>/<skill>
+
+# Materialize the change
+git checkout
 ```
 
 ### Pull upstream changes
 
-```bash
+```powershell
 cd .opencode
 git pull
 ```
 
 ### Author a new skill and publish back
 
-```bash
+```powershell
 cd .opencode
 # create stacks/<language>/<name>/SKILL.md (with `name` + `description` frontmatter)
 git add stacks/<language>/<name>
