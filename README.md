@@ -39,7 +39,8 @@ any file in `.opencode/`.
     │   └── calamine-rust-xlsxwriter-conventions/SKILL.md  # Rust xlsx peer libs
     ├── nestjs/                                   # complete backend framework
     │   └── nestjs-convention/SKILL.md
-    ├── elysiajs/                                 # complete backend framework (apps/api) — reserved
+    ├── elysiajs/                                 # complete backend framework (apps/api)
+    │   └── elysiajs-convention/SKILL.md
     └── axum/                                     # complete backend framework
         └── axum-convention/SKILL.md
 ```
