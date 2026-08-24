@@ -3,6 +3,65 @@
 Config is loaded once when opencode starts; **restart opencode** after editing
 any file in `.opencode/`.
 
+## Workflow
+
+This repo is meant to be reused across repositories via **sparse checkout**:
+each consumer pulls only the skills it needs.
+
+### Bootstrap in a consumer repo
+
+```bash
+# From the consumer repo root
+mkdir -p .opencode
+cd .opencode
+git init
+git remote add origin git@github.com:kyung-lee-official/.opencode.git
+
+# Select only the relevant skills (cone mode = directory-level)
+git sparse-checkout init --cone
+git sparse-checkout set \
+    AGENTS.md \
+    opencode.json \
+    README.md \
+    methodology/<relevant-skill> \
+    methodology/<relevant-skill> \
+    stacks/<language> \
+    stacks/<framework>
+
+git pull origin main
+```
+
+`--cone` keeps the selection directory-level, which matches the
+`stacks/<x>/<skill>/SKILL.md` layout. The consumer's `.gitignore` should
+ignore `.opencode/` so the nested repo stays isolated.
+
+### Add or remove a skill later
+
+```bash
+cd .opencode
+git sparse-checkout add stacks/<framework>
+git sparse-checkout set stacks/<language> ...
+git pull
+```
+
+### Pull upstream changes
+
+```bash
+cd .opencode
+git pull
+```
+
+### Author a new skill and publish back
+
+```bash
+cd .opencode
+# create stacks/<language>/<name>/SKILL.md (with `name` + `description` frontmatter)
+git add stacks/<language>/<name>
+# wait for explicit user approval before committing
+git commit -m "..."
+git push origin main
+```
+
 ## Layout
 
 ```text
