@@ -1,6 +1,6 @@
 ---
 name: prisma-schema-no-auto-migrations
-description: Use when editing `prisma/schema.prisma` or running Prisma CLI in this repo — agents may edit the schema and run `prisma generate` only, and must never run `migrate *` / `db push` / `db pull` / `migrate diff` or author anything under `prisma/migrations/`.
+description: Use when editing `prisma/schema.prisma` or running Prisma CLI — agents may edit the schema and run `prisma generate` only, and must never run `migrate *` / `db push` / `db pull` / `migrate diff` or author anything under `prisma/migrations/`.
 ---
 
 # Prisma — schema and generate only (no migrations)

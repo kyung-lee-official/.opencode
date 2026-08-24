@@ -30,7 +30,7 @@ Do this when any of the following is true:
 - The user asks to populate / fill / write a migration
 - The user ran or mentions `sea-orm-cli migrate generate` and a stub
   (`todo!()`) exists
-- Entities under `apps/axum-app/src/entity/` (or shared entity crates)
+- Entities under `apps/<app>/src/entity/` (or shared entity crates)
   changed and a pending migration stub needs to match
 
 Prefer matching **hand-written `Table::create` / indexes / FKs** to entities
@@ -46,7 +46,7 @@ Before finishing, verify and briefly report:
 2. **Columns / types** match entities (`Uuid`, `string` / `string_len(32)`
    for string enums, `timestamptz`, uniques)
 3. **FKs** and **unique indexes** match entity relations and
-   `apps/axum-app/README.md` (or equivalent docs)
+   `apps/<app>/README.md` (or equivalent docs)
 4. **`down`** drops tables in reverse dependency order
 5. **`migration/src/lib.rs`** lists the migration in `migrations()`
 6. **`cargo check -p migration`** succeeds

@@ -13,7 +13,7 @@ everything to Bun in a Rust workspace (or vice versa).
 | Area                                           | Prefer                                                                     | Fall back                                                                        |
 | ---------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | TypeScript / JS packages, Nest, Next, frontend | **`bun`** / **`bunx`**                                                     | npm / pnpm / yarn only if the project or task requires it, or Bun is unavailable |
-| Rust crates / this monorepo tasks              | **`moon`** for workspace tasks; **`cargo`** for crate-level build/test/run | —                                                                                |
+| Rust crates / Rust workspaces                  | **`moon`** for workspace tasks; **`cargo`** for crate-level build/test/run | —                                                                                |
 | Mixed change                                   | Run the tool for **each** affected stack                                   | —                                                                                |
 
 Examples:
@@ -24,9 +24,9 @@ bun install
 bun run <script>
 
 # Rust / moon
-moon run axum-app:dev
-cargo check -p axum-app
-cargo test -p axum-app
+moon run <workspace-target>:dev
+cargo check -p <crate>
+cargo test -p <crate>
 ```
 
 ## Shell commands
