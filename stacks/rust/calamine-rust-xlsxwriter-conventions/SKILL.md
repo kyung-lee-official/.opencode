@@ -5,8 +5,6 @@ description: Use when editing Rust `.xlsx` import/export code — read with `cal
 
 # Excel `.xlsx` — calamine + rust_xlsxwriter
 
-Peer of **`exceljs-xlsx-conventions`** for the TypeScript stack.
-
 | Direction                              | Crate                                                                                                      | Notes                                                    |
 | -------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
 | **Read** (imports)                     | **calamine**                                                                                               | Lazy, read-only — do not use `rust_xlsxwriter` to read   |
@@ -34,8 +32,8 @@ let s = cell_string.trim(); // from calamine cell → display string helper
 let raw = match cell { Data::Float(f) => f.to_string(), /* ... */ };
 ```
 
-Money/domain parsing after read still follows **`rust-convention`** /
-`coding-convention` (no `f64` as the long-lived domain money type).
+Money/domain parsing after read should not use `f64` as the long-lived
+domain money type.
 
 ---
 
@@ -71,8 +69,8 @@ Write **numeric** cells (`write_number` / `write_number_with_format`), not
 strings, for money, rates, weights, counts, or any column users should
 **`SUM`**. Use **`Format::set_num_format`** for display.
 
-Domain and DB keep high-precision decimals (see **`rust-convention`** —
-`rust_decimal::Decimal` or minor units). Convert **at the export boundary**
+Domain and DB keep high-precision decimals (`rust_decimal::Decimal` or
+integer cents / minor units). Convert **at the export boundary**
 only: apply an **explicit** round for that column's **display** contract,
 then write a number suitable for Excel. Do **not** `write_string` for amount
 columns. Excel rounding is presentation — it does not redefine storage

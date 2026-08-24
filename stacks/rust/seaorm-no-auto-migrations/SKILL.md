@@ -5,9 +5,8 @@ description: Use when editing SeaORM entities or migration files — populate `u
 
 # SeaORM — entity-aligned migrations (no auto-apply)
 
-Peer of `prisma-schema-no-auto-migrations` on **applying** schema to the DB.
-Unlike Prisma, SeaORM `migrate generate` only stubs files — the agent
-**does** author migration bodies from entities when needed.
+SeaORM `migrate generate` only stubs files — the agent **does** author
+migration bodies from entities when needed.
 
 ## Allowed
 

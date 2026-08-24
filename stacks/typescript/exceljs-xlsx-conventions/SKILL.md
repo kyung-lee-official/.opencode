@@ -59,8 +59,8 @@ Write **numeric** cell values (`number`), not **strings**, for money, rates,
 weights, counts, or any column users should **`SUM`**. Use **`numFmt`** for
 display.
 
-Domain and DB keep high-precision **`Decimal`** (typically
-`@db.Decimal(17, 6)` — see `typescript-convention`). Convert **at the export
+Domain and DB keep high-precision **`Decimal`** (typically Prisma
+`@db.Decimal(17, 6)`). Convert **at the export
 boundary** only: apply an **explicit** round for that column's **display**
 contract, then **`.toNumber()`**. Do not pass `String(decimal)` or
 `decimal.toString()` into **`addRow`** for amount columns. Excel rounding is

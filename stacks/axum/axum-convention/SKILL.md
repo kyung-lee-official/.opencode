@@ -6,8 +6,7 @@ description: Use when editing Axum HTTP API code (routes, handlers, extractors, 
 # Axum conventions
 
 Applies when editing **Axum HTTP API** code (routes, handlers, extractors,
-app state). Peer of **`nestjs-convention`** for the Nest stack. Shared Rust
-rules live in **`rust-convention`**.
+app state).
 
 ## App wiring
 

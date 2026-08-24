@@ -60,6 +60,5 @@ persistence, and API DTOs.
 
 ### Excel
 
-- Export: numeric cells + `numFmt` at the export boundary (see
-  `exceljs-xlsx-conventions`). Rounding for display does not change the DB
-  scale.
+- Export: numeric cells + `numFmt` at the export boundary. Rounding for
+  display does not change the DB scale.
