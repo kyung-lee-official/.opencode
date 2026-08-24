@@ -1,18 +1,5 @@
 # opencode workspace config
 
-This folder replaces the prior `.cursor/` setup. `.cursor/` is **left in place**
-for the Cursor IDE; opencode reads its own config from `.opencode/` and never
-looks at `.cursor/`.
-
-opencode does **not** have a "rules" concept the way Cursor does. Instead:
-
-| Cursor (old)              | opencode (new)                                                 |
-| ------------------------- | -------------------------------------------------------------- |
-| `rules/*.mdc` (always on) | `AGENTS.md` (referenced via `instructions` in `opencode.json`) |
-| `rules/*.mdc` (scoped)    | `skills/<name>/SKILL.md` (loaded by description trigger)       |
-| `mcp.json`                | `mcp` block in `opencode.json`                                 |
-| `.gitignore` for `mcp.json` | not needed — config lives in version-controlled JSON          |
-
 Config is loaded once when opencode starts; **restart opencode** after editing
 any file in `.opencode/`.
 
@@ -89,6 +76,11 @@ developer's settings live in `.opencode/opencode.json` and are committed. If
 you must keep a setting local, prefer environment variables in the
 `mcp[name].environment` block (opencode supports `{env:VAR}` interpolation in
 header values; shell-style `${VAR}` is **not** substituted).
+
+If you previously kept settings under another editor's dot-folder, that
+folder is independent from `.opencode/` — opencode reads only its own. Move
+MCP entries into `mcp` in `opencode.json` and equivalent always-on guidance
+into `AGENTS.md` or a skill.
 
 ### Adding more MCP servers
 
