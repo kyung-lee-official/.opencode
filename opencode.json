@@ -11,7 +11,7 @@
         "--path",
         "."
       ],
-      "enabled": false
+      "enabled": true
     }
   }
 }
