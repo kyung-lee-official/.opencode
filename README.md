@@ -20,24 +20,46 @@ any file in `.opencode/`.
 
 ```text
 .opencode/
-├── opencode.json                     # $schema, instructions, mcp
-├── README.md                         # this file
-├── AGENTS.md                         # always-on root instructions
-└── skills/
-    ├── authoring-opencode/
-    │   └── SKILL.md                  # how to write skills/agents/instructions
-    ├── codegraph/SKILL.md            # CodeGraph MCP workflow
-    ├── dev-and-debug/SKILL.md        # Windows dev, bun/cargo/curl.exe
-    ├── prisma-schema-no-auto-migrations/SKILL.md
-    ├── typescript-convention/SKILL.md
-    ├── frontend-convention/SKILL.md
-    ├── axum-convention/SKILL.md
-    ├── nestjs-convention/SKILL.md
-    ├── rust-convention/SKILL.md
-    ├── calamine-rust-xlsxwriter-conventions/SKILL.md
-    ├── exceljs-xlsx-conventions/SKILL.md
-    └── seaorm-no-auto-migrations/SKILL.md
+├── opencode.json                                 # $schema, instructions, mcp
+├── README.md                                     # this file
+├── AGENTS.md                                     # always-on root instructions
+├── methodology/                                  # stack-agnostic theory / workflow
+│   ├── authoring-opencode/SKILL.md              # meta: how to write skills/agents/instructions
+│   ├── codegraph/SKILL.md                       # CodeGraph MCP workflow
+│   └── dev-and-debug/SKILL.md                   # Windows dev, bun/cargo/curl.exe
+└── stacks/
+    ├── typescript/                               # generic TS + TS-related tool/frontend conventions
+    │   ├── typescript-convention/SKILL.md
+    │   ├── frontend-convention/SKILL.md         # React/Next.js patterns (RHF/Zod/TanStack Query)
+    │   ├── exceljs-xlsx-conventions/SKILL.md    # TS tool
+    │   └── prisma-schema-no-auto-migrations/SKILL.md  # TS tool
+    ├── rust/                                     # generic Rust + Rust-related tool conventions
+    │   ├── rust-convention/SKILL.md
+    │   ├── seaorm-no-auto-migrations/SKILL.md   # Rust ORM tool
+    │   └── calamine-rust-xlsxwriter-conventions/SKILL.md  # Rust xlsx peer libs
+    ├── nestjs/                                   # complete backend framework
+    │   └── nestjs-convention/SKILL.md
+    ├── elysiajs/                                 # complete backend framework (apps/api) — reserved
+    └── axum/                                     # complete backend framework
+        └── axum-convention/SKILL.md
 ```
+
+### Folder rules
+
+- **`methodology/`** — stack-agnostic theory and workflow (no syntax, no
+  framework API). Tools like `dev-and-debug` live here because they describe
+  *how to develop*, not a specific language.
+- **`stacks/<language>/`** — generic language rules plus any tool/frontend
+  conventions that are specific to that language (e.g. `prisma` and `exceljs`
+  under TS, `seaorm` under Rust). Skills share the language folder regardless
+  of whether they target syntax, frontend patterns, or a library.
+- **`stacks/<framework>/`** — only **complete backend frameworks** earn a
+  top-level slot (NestJS, ElysiaJS, Axum). Frontend frameworks like Next.js
+  are not split out — their conventions live under `stacks/typescript/`.
+- **`stacks/<framework>/` with no skill yet** — the folder exists on disk but
+  is empty. Git won't track an empty directory; the folder is created when
+  its first `SKILL.md` lands. Add a `.gitkeep` if you want it reserved
+  visibly in version control.
 
 ## MCP servers
 
