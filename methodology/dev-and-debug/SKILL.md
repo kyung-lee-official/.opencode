@@ -43,7 +43,7 @@ cargo test -p <crate>
   timeout so a dead port does not hang the shell:
 
 ```powershell
-curl.exe -s --max-time 5 http://localhost:3002/health
+curl.exe -s --max-time 5 http://localhost:3001/health
 ```
 
 Do not use bare `curl -s http://localhost:...` in PowerShell agent commands.
