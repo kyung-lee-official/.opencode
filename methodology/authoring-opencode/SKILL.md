@@ -22,6 +22,20 @@ headers or enums from a real product.
 **Scope:** project-only conventions belong in that repo's rules or
 `AGENTS.md`, not in shared user-level rules.
 
+## Keep docs succinct
+
+Write only what the design already decided. State each rule once, with its
+reason; then stop. Do not introduce features, edge cases, or future work that
+were never in scope — an example illustrates a rule, it does not extend it.
+
+| Do                                         | Don't                                          |
+| ------------------------------------------ | ---------------------------------------------- |
+| Document the behavior the design chose     | Document adjacent behavior it never chose      |
+| One example per rule, only if it clarifies | Enumerate every branch the example might imply |
+| Say what to do                             | Speculate on what could be added later         |
+
+If a section would exist only to cover out-of-scope cases, drop it.
+
 ## SKILL.md frontmatter
 
 opencode skills require frontmatter with `name` (matches folder) and
