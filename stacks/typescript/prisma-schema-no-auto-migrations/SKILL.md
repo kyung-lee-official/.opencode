@@ -8,8 +8,8 @@ description: Use when editing `prisma/schema.prisma` or running Prisma CLI — a
 Run Prisma CLI from the **directory that contains `schema.prisma`**. Nothing
 else under Prisma may be executed or authored by the agent.
 
-**Allowed:** edit `schema.prisma`; run `prisma generate` when the client must
-match the schema.
+**Allowed:** author or edit `schema.prisma` only; run `prisma generate` when
+the client must match the schema.
 
 **Forbidden (no exceptions — including if the user asks in the same task):**
 
