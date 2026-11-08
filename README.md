@@ -73,12 +73,13 @@ git push origin main
 
 ```text
 .opencode/
-├── opencode.json                                 # $schema, instructions, mcp
+├── opencode.json                                 # $schema, instructions, skills, mcp
 ├── README.md                                     # this file
 ├── AGENTS.md                                     # always-on root instructions
 ├── methodology/                                  # stack-agnostic theory / workflow
 │   ├── authoring-opencode/SKILL.md              # meta: how to write skills/agents/instructions
 │   ├── codegraph/SKILL.md                       # CodeGraph MCP workflow
+│   ├── data-access-convention/SKILL.md          # application/service/DAL layering
 │   └── dev-and-debug/SKILL.md                   # Windows dev, bun/cargo/curl.exe
 └── stacks/
     ├── typescript/                               # generic TS + TS-related tool/frontend conventions
@@ -97,6 +98,10 @@ git push origin main
     └── axum/                                     # complete backend framework
         └── axum-convention/SKILL.md
 ```
+
+`opencode.json` registers `methodology/` and `stacks/` through `skills.paths`;
+opencode only auto-discovers project skills under `.opencode/skills/`. Only
+directories present in the sparse checkout are loaded.
 
 ### Folder rules
 
@@ -117,8 +122,9 @@ git push origin main
 
 ## MCP servers
 
-The `opencode.json` ships a **disabled** `codegraph` entry as a template. To
-enable it for this machine:
+The `opencode.json` includes an enabled `codegraph` entry. If the CLI is not
+installed on a machine, set `mcp.codegraph.enabled` to `false` there. To enable
+it:
 
 1. Install the CodeGraph CLI (`codegraph`) so it is on `PATH`.
 2. Edit `.opencode/opencode.json` and set `mcp.codegraph.enabled: true`. The
@@ -126,9 +132,11 @@ enable it for this machine:
    different root.
 3. Restart opencode.
 
-CodeGraph exposes tools named `mcp__codegraph__*` (search, callers, callees,
-trace, impact, node, context, explore, files, status). See the `codegraph`
-skill for which tool fits which question.
+In opencode, CodeGraph tools are exposed as `codegraph_codegraph_*` (for
+example `codegraph_codegraph_explore`); other clients may use the
+`mcp__codegraph__*` form. Available tools: search, callers, callees, impact,
+node, explore, files, status. See the `codegraph` skill for which tool fits
+which question.
 
 On Windows, set `--path` to an **absolute path with doubled backslashes**
 inside the JSON string (e.g. `"--path", "C:\\path\\to\\root"`). The default
