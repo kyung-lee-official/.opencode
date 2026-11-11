@@ -2,7 +2,7 @@
 
 Language-agnostic rules for this monorepo. Stack-specific details live in the
 opencode skills **`typescript-convention`**, **`rust-convention`**,
-**`frontend-convention`**, and the Axum / NestJS / Excel skills.
+**`frontend-convention`**, and the Axum / ElysiaJS / Excel skills.
 
 ## Prepositions: `from` vs `by`
 

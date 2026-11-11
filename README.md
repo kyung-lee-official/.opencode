@@ -90,8 +90,6 @@ git push origin main
     │   ├── rust-convention/SKILL.md
     │   ├── seaorm-no-auto-migrations/SKILL.md   # Rust ORM tool
     │   └── calamine-rust-xlsxwriter-conventions/SKILL.md  # Rust xlsx peer libs
-    ├── nestjs/                                   # complete backend framework
-    │   └── nestjs-convention/SKILL.md
     ├── elysiajs/                                 # complete backend framework (apps/api)
     │   └── elysiajs-convention/SKILL.md
     └── axum/                                     # complete backend framework
@@ -108,7 +106,7 @@ git push origin main
   under TS, `seaorm` under Rust). Skills share the language folder regardless
   of whether they target syntax, frontend patterns, or a library.
 - **`stacks/<framework>/`** — only **complete backend frameworks** earn a
-  top-level slot (NestJS, ElysiaJS, Axum). Frontend frameworks like Next.js
+  top-level slot (ElysiaJS, Axum). Frontend frameworks like Next.js
   are not split out — their conventions live under `stacks/typescript/`.
 - **`stacks/<framework>/` with no skill yet** — the folder exists on disk but
   is empty. Git won't track an empty directory; the folder is created when
